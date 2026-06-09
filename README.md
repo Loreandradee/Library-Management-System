@@ -36,10 +36,11 @@ pip install bcrypt pytest pillow
 python trinity.py
 ```
 ## 📦 Dependências
-txt
+```bash
 bcrypt==4.0.1    # Criptografia de senhas
 pytest==7.4.0    # Testes automatizados
 pillow==10.0.0   # Processamento de imagens
+```
 
 ## 🔐 Credenciais de Acesso
 Usuário	Senha
@@ -47,6 +48,7 @@ lorena	1234
 Prakarsha	root
 
 ## ⌨️ Atalhos de Teclado
+``` bash
 Atalho	Ação
 Ctrl + B	Abrir Gerenciamento de Livros
 Ctrl + E	Abrir Gerenciamento de Empréstimos
@@ -55,9 +57,10 @@ Ctrl + S	Abrir Configurações
 Ctrl + D	Alternar Tema (Claro/Escuro)
 Delete	Excluir livro selecionado
 F1	Abrir Ajuda
+```
 
 ## 📁 Estrutura do Projeto
-txt
+``` bash
 Library-Management-System/
 │
 ├── 📄 trinity.py              # Aplicação principal (interface completa)
@@ -76,6 +79,7 @@ Library-Management-System/
 ├── 📁 screenshots/            # Imagens da demonstração
 │
 └── 📄 README.md               # Este arquivo
+```
 
 ## 🧪 Executando os Testes
 ```bash
