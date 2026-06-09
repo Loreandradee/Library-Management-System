@@ -44,9 +44,11 @@ pillow==10.0.0   # Processamento de imagens
 
 ## 🔐 Credenciais de Acesso
 ```bash
-Usuário	Senha
-lorena	1234
-Prakarsha	root
+| Usuário | Senha |
+|--------|-----------------|
+| lorena | 1234 |
+| Prakarsha | root |
+
 ```
 
 ## ⌨️ Atalhos de Teclado
