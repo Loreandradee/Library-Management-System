@@ -57,7 +57,6 @@ Delete	Excluir livro selecionado
 F1	Abrir Ajuda
 
 ## 📁 Estrutura do Projeto
-text
 Library-Management-System/
 │
 ├── 📄 trinity.py              # Aplicação principal (interface completa)
