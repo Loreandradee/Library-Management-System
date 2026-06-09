@@ -96,6 +96,37 @@ class Toast:
         
         toast.after(duration, toast.destroy)
 
+# ==================== MENU DE CONTEXTO (BOTÃO DIREITO) ====================
+class ContextMenu:
+    def __init__(self, parent, book_id_callback, title_callback):
+        self.menu = tk.Menu(parent, tearoff=0)
+        self.menu.add_command(label="✏️ Editar Livro", command=lambda: self.edit_callback())
+        self.menu.add_command(label="📤 Emprestar Agora", command=lambda: self.issue_callback())
+        self.menu.add_separator()
+        self.menu.add_command(label="🗑️ Excluir Livro", command=lambda: self.delete_callback())
+        
+        self.book_id_callback = book_id_callback
+        self.title_callback = title_callback
+        self.current_book_id = None
+        self.current_title = None
+        
+    def edit_callback(self):
+        if self.current_book_id:
+            self.book_id_callback(self.current_book_id, is_edit=True)
+            
+    def issue_callback(self):
+        if self.current_book_id:
+            self.title_callback(self.current_book_id)
+            
+    def delete_callback(self):
+        if self.current_book_id:
+            self.book_id_callback(self.current_book_id, is_edit=False)
+            
+    def show(self, event, book_id, title):
+        self.current_book_id = book_id
+        self.current_title = title
+        self.menu.post(event.x_root, event.y_root)
+
 # ==================== CLASSE PRINCIPAL ====================
 class UnifiedLibrarySystem:
     def __init__(self):
@@ -455,7 +486,54 @@ class UnifiedLibrarySystem:
             self.books_tree.column(col, width=col_widths.get(col, 120), anchor="center")
             
         self.books_tree.pack(side="left", fill="both", expand=True)
+        
+        # ==================== IMPLEMENTAÇÃO DO MENU DE BOTÃO DIREITO ====================
+        # Cria o menu de contexto
+        self.context_menu = ContextMenu(
+            self.root,
+            book_id_callback=self.handle_context_menu_action,
+            title_callback=self.quick_issue_from_book_context
+        )
+        
+        # Vincula o evento de botão direito à treeview
+        self.books_tree.bind("<Button-3>", self.show_context_menu)
+        
+        # Duplo clique ainda funciona
         self.books_tree.bind("<Double-1>", lambda e: self.quick_issue_from_book())
+        
+    def show_context_menu(self, event):
+        """Exibe o menu de contexto no clique do botão direito"""
+        # Seleciona o item sob o cursor
+        item = self.books_tree.identify_row(event.y)
+        if item:
+            self.books_tree.selection_set(item)
+            values = self.books_tree.item(item, 'values')
+            book_id = values[0]
+            title = values[1]
+            self.context_menu.show(event, book_id, title)
+            
+    def handle_context_menu_action(self, book_id, is_edit=False):
+        """Gerencia as ações do menu de contexto"""
+        if is_edit:
+            # Editar livro - seleciona na tabela e chama edição
+            for item in self.books_tree.get_children():
+                if self.books_tree.item(item, 'values')[0] == book_id:
+                    self.books_tree.selection_set(item)
+                    self.edit_selected_book()
+                    break
+        else:
+            # Excluir livro
+            for item in self.books_tree.get_children():
+                if self.books_tree.item(item, 'values')[0] == book_id:
+                    self.books_tree.selection_set(item)
+                    self.delete_selected_book()
+                    break
+                    
+    def quick_issue_from_book_context(self, book_id):
+        """Empréstimo rápido vindo do menu de contexto"""
+        self.show_loans_view()
+        self.loan_book_field.set(book_id)
+        self.check_book_availability_loan()
 
     def update_books_summary(self):
         conn = sqlite3.connect('test.db')
