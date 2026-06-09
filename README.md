@@ -17,17 +17,6 @@ Sistema de Gerenciamento de Biblioteca com interface gráfica moderna em Python 
 | 🎨 **Interface** | Modo claro/escuro, notificações toast, cards modernos |
 | ⌨️ **Atalhos** | Teclas de atalho para todas as ações principais |
 
-## 🚀 Demonstração
-
-| Login | Dashboard |
-|-------|-----------|
-| ![Login](screenshots/1.jpg) | ![Home](screenshots/2.jpg) |
-
-| Livros | Empréstimos |
-|--------|-------------|
-| ![Books](screenshots/3.jpg) | ![Loans](screenshots/5.jpg) |
-| ![Books Table](screenshots/4.jpg) | ![Activity](screenshots/6.jpg) |
-
 ## 📋 Pré-requisitos
 
 - Python 3.8 ou superior
@@ -103,24 +92,17 @@ pytest test_integration.py -v
 pytest -v --tb=short
 ```
 
-## Como a interface era antes das mudanças:
+## 🚀 Telas antes de qualquer alteração
 
-**Login Screen**
-![](screenshots/1.jpg)
+| Login | Dashboard |
+|-------|-----------|
+| ![Login](screenshots/1.jpg) | ![Home](screenshots/2.jpg) |
 
-**Home Screen**
-![](screenshots/2.jpg)
+| Livros | Empréstimos |
+|--------|-------------|
+| ![Books](screenshots/3.jpg) | ![Loans](screenshots/5.jpg) |
+| ![Books Table](screenshots/4.jpg) | ![Activity](screenshots/6.jpg) |
 
-**Book Data**
-![](screenshots/3.jpg)
-![](screenshots/4.jpg)
-
-**Student Data**
-![](screenshots/5.jpg)
-![](screenshots/6.jpg)
-
-
-## Como a interface fiocu depois das mudanças:
 
 
 
