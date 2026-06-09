@@ -110,5 +110,5 @@ pytest -v --tb=short
 | ![Books Table](screenshots/4.jpg) | ![Activity](screenshots/6.jpg) |
 
 
-
+OBS: Estavamos usando a conta da Vanu, porque não estava dando certo na minha conta para subir os commits. A maioria dos códicos foi desenvollvido no VS Code e posteriormente integrado ao Git
 
